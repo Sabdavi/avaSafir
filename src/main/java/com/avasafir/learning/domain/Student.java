@@ -1,10 +1,13 @@
 package com.avasafir.learning.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,4 +70,7 @@ public class Student {
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
+
+    @OneToMany(mappedBy = "student")
+    private List<StudentAddress> addresses = new ArrayList<>();
 }
